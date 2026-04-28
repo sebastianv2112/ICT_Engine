@@ -13,6 +13,7 @@ dependencies = [
 
 [project.scripts]
 ict-mcp-server = "ict_mcp.server:main"
+ict-webhook = "ict_mcp.webhook:run_standalone"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ict_mcp"]

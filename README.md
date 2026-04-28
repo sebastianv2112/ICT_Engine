@@ -124,6 +124,8 @@ Claude ejecutará el flujo completo:
 
 ## Conectar con TradingView (Webhooks)
 
+Cuando TradingView envía una alerta, el servidor ejecuta automáticamente el análisis completo multi-TF y muestra el resultado en un dashboard web.
+
 ### 1. Agregar el indicador a TradingView
 
 1. Abre TradingView → Pine Editor (pestaña inferior)
@@ -132,22 +134,41 @@ Claude ejecutará el flujo completo:
 4. Click **"Add to chart"**
 5. El indicador aparecerá con un panel ICT en la esquina superior derecha
 
-### 2. Exponer el webhook con ngrok
+### 2. Iniciar el servidor webhook
+
+```bash
+cd mcp-ict-agent
+uv run ict-webhook
+```
+
+El servidor queda escuchando en `http://localhost:8642`. Verás:
+
+```
+╔══════════════════════════════════════════════════════╗
+║  ICT 2022 Setup Engine — Webhook Server             ║
+║  Dashboard:  http://localhost:8642                   ║
+║  Cuando TradingView envíe una alerta:               ║
+║    → Se ejecuta analyze_ict_setup() automáticamente  ║
+║    → Resultado visible en dashboard y ngrok UI       ║
+╚══════════════════════════════════════════════════════╝
+```
+
+### 3. Exponer con ngrok
+
+En otra terminal:
 
 ```bash
 # Instalar ngrok (una sola vez)
 brew install ngrok
 # o en Linux: snap install ngrok
 
-# Exponer el puerto del MCP
+# Exponer el puerto
 ngrok http 8642
 ```
 
 Copia la URL HTTPS que aparece (ej: `https://abc123.ngrok-free.app`)
 
-### 3. Crear alertas en TradingView
-
-En TradingView:
+### 4. Crear alertas en TradingView
 
 1. Click en el ícono de reloj (Alerts) → **"Create Alert"**
 2. **Condition**: selecciona "ICT 2022 — Flow X | HTF Persistent Bias"
@@ -162,11 +183,17 @@ En TradingView:
 
 > Repite para cada tipo de alerta (4 en total).
 
-### 4. Verificar conexión
+### 5. Ver resultados
 
-```
-@ict-mcp-agent estado del webhook
-```
+Cuando salta una alerta, el análisis aparece en:
+
+| Dónde | URL |
+|-------|-----|
+| **Dashboard web** | `http://localhost:8642` (o la URL de ngrok en tu browser) |
+| **ngrok Inspector** | `http://127.0.0.1:4040` → pestaña Response |
+| **Terminal** | Se imprime directamente donde corre `uv run ict-webhook` |
+
+El dashboard se actualiza automáticamente cada 10 segundos.
 
 ---
 
