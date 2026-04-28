@@ -36,8 +36,8 @@ Claude analiza el mercado en tiempo real siguiendo el flujo multi-timeframe:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/ict-2022-setup-engine.git
-cd ict-2022-setup-engine
+git clone https://github.com/sebastianv2112/ICT_Engine.git
+cd ICT_Engine
 ```
 
 ### 2. Instalar uv (si no lo tienes)
