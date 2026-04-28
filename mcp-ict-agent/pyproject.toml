@@ -1,0 +1,22 @@
+[project]
+name = "ict-mcp-server"
+version = "1.0.0"
+description = "MCP server — ICT 2022 Setup Engine para NQ/ES/YM"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.0.0",
+    "yfinance>=0.2.40",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "pytz>=2024.1",
+]
+
+[project.scripts]
+ict-mcp-server = "ict_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ict_mcp"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
