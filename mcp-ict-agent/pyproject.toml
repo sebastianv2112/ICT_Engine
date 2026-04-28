@@ -3,6 +3,10 @@ name = "ict-mcp-server"
 version = "1.0.0"
 description = "MCP server — ICT 2022 Setup Engine para NQ/ES/YM"
 requires-python = ">=3.11"
+
+[project.urls]
+Homepage = "https://github.com/sebastianv2112/ICT_Engine"
+Repository = "https://github.com/sebastianv2112/ICT_Engine"
 dependencies = [
     "mcp>=1.0.0",
     "yfinance>=0.2.40",
